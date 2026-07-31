@@ -1,7 +1,11 @@
 import socket
+import sys
 s=socket.socket()
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-s.bind(('',28333))
+if len(sys.argv)==2:
+    s.bind(('',sys.argv[1]))
+else:
+    s.bind(('',28333))
 s.listen()
 while True:
     new_conn=s.accept()
