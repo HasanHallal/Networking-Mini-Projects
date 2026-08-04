@@ -5,7 +5,7 @@ s=socket.socket()
 s.connect(("time.nist.gov",37))
 d=s.recv(4)
 s.close()
-nist=int.from_bytes(d)
+nist=int.from_bytes(d,"big")
 print("NIST time  :",nist)
 
 def system_seconds_since_1900():
