@@ -29,76 +29,11 @@ def get_network(ip_value, netmask):
     return netmask & ip_value
 
 def find_router_for_ip(routers, ip):
-    """
-    Search a dictionary of routers (keyed by router IP) to find which
-    router belongs to the same subnet as the given IP.
-
-    Return None if no routers is on the same subnet as the given IP.
-
-    FOR FULL CREDIT: you must do this by calling your ips_same_subnet()
-    function.
-
-    Example:
-
-    [Note there will be more data in the routers dictionary than is
-    shown here--it can be ignored for this function.]
-
-    routers: {
-        "1.2.3.1": {
-            "netmask": "/24"
-        },
-        "1.2.4.1": {
-            "netmask": "/24"
-        }
-    }
-    ip: "1.2.3.5"
-    return: "1.2.3.1"
-
-
-    routers: {
-        "1.2.3.1": {
-            "netmask": "/24"
-        },
-        "1.2.4.1": {
-            "netmask": "/24"
-        }
-    }
-    ip: "1.2.5.6"
-    return: None
-    """
+    
     for ip1 in routers:
         if ips_same_subnet(ip1,ip,routers[ip1]["netmask"]):
             return ip1
     return None
-    pass
-
-# Uncomment this code to have it run instead of the real main.
-# Be sure to comment it back out before you submit!
-"""
-def my_tests():
-    print("-------------------------------------")
-    print("This is the result of my custom tests")
-    print("-------------------------------------")
-    routers={
-            "1.2.3.1": {
-                "netmask": "/24"
-            },
-            "1.2.4.1": {
-                "netmask": "/24"
-            }
-        }
-    ip= "1.2.5.6"
-    s=find_router_for_ip(routers,ip)
-    print(s)
-"""
-    # Add custom test code here
-
-
-## -------------------------------------------
-## Do not modify below this line
-##
-## But do read it so you know what it's doing!
-## -------------------------------------------
 
 def usage():
     print("usage: netfuncs.py infile.json", file=sys.stderr)
@@ -161,10 +96,6 @@ def print_ip_routers(routers, src_dest_pairs):
         print(f" {router_ip:>15s}: {router_host_map[router_ip]}")
 
 def main(argv):
-    if "my_tests" in globals() and callable(my_tests):
-        my_tests()
-        return 0
-
     try:
         router_file_name = argv[1]
     except:
